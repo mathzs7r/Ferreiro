@@ -1,0 +1,57 @@
+:root {
+    --cor-primaria: #8B0000;
+    --cor-secundaria: #D45F00;
+    --cor-texto-principal: #4A2C2A;
+    --cor-fundo-claro: #FDF5E6;
+    --cor-fundo-cards: #ffffff;
+    --cor-texto-claro: #ffffff;
+    --cor-texto-slogan: #FFDAB9;
+    --cor-cinza-fumaça: #888888;
+
+    --espacamento-padrao: 20px;
+    --espacamento-grande: 30px;
+    --borda-arredondada-pequena: 6px;
+    --borda-arredondada-media: 10px;
+    --transicao-suave: 0.3s ease;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-principal);
+    margin: var(--espacamento-grande);
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1 {
+    color: var(--cor-primaria);
+    text-align: center;
+    margin-bottom: var(--espacamento-padrao);
+}
+
+h2 {
+    color: var(--cor-secundaria);
+    border-bottom: 2px solid var(--cor-secundaria);
+    padding-bottom: 5px;
+    margin-top: var(--espacamento-grande);
+    margin-bottom: var(--espacamento-padrao);
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none; /* Remove os marcadores padrão da lista */
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+b {
+    color: var(--cor-primaria); /* Deixa os rótulos em negrito com a cor primária */
+}
