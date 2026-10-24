@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
 
-  <!-- NAV -->
   <header class="topbar" id="inicio">
     <div class="container topbar__inner">
       <a href="#inicio" class="logo">
@@ -25,7 +25,12 @@
         <a href="#pagamento" class="nav__link">Pagamento</a>
         <a href="#contato" class="nav__link">Contato</a>
         <a href="Suporte.html" class="nav__link">Suporte</a>
+        <a href="login.html" class="nav__link" id="nav-login">Entrar</a>
       </nav>
+      <div class="user-chip" id="user-chip">
+        <span>Olá, <strong data-user-name></strong></span>
+        <button type="button" id="logout-btn">Sair</button>
+      </div>
       <button class="cart-btn" id="cart-btn" aria-label="Abrir carrinho">
         🛒 <span class="cart-btn__count" id="cart-count">0</span>
       </button>
@@ -35,7 +40,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero__overlay"></div>
     <div class="container hero__content">
@@ -44,12 +48,11 @@
       <p class="hero__subtitle">Hambúrgueres artesanais forjados na brasa, com carne suculenta e ingredientes frescos. Não é só um sanduíche — é um legado.</p>
       <div class="hero__actions">
         <a href="#cardapio" class="btn btn--primary">Ver cardápio</a>
-        <a href="#contato" class="btn btn--ghost">Como chegar</a>
+        <a href="login.html" class="btn btn--ghost">Entrar / Cadastrar</a>
       </div>
     </div>
   </section>
 
-  <!-- CARDÁPIO -->
   <section class="section" id="cardapio">
     <div class="container">
       <header class="section__header">
@@ -122,7 +125,6 @@
     </div>
   </section>
 
-  <!-- PAGAMENTO -->
   <section class="section section--alt" id="pagamento">
     <div class="container">
       <header class="section__header">
@@ -139,7 +141,6 @@
     </div>
   </section>
 
-  <!-- CONTATO -->
   <section class="section" id="contato">
     <div class="container contact-grid">
       <div>
@@ -177,7 +178,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__brand">⚒ O Ferreiro do Sabor</p>
@@ -185,7 +185,6 @@
     </div>
   </footer>
 
-  <!-- CARRINHO (drawer) -->
   <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
     <div class="cart-drawer__header">
       <h2>Seu pedido</h2>
@@ -204,9 +203,9 @@
   </aside>
   <div class="cart-backdrop" id="cart-backdrop"></div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast" role="status"></div>
 
+  <script src="auth.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

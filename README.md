@@ -1,50 +1,78 @@
 # O Ferreiro do Sabor
 
-Site da hamburgueria artesanal **O Ferreiro do Sabor** (Ponta Grossa – PR).
+Site + **API** + **MySQL** da hamburgueria artesanal **O Ferreiro do Sabor** (Ponta Grossa – PR).
 
-## Destaques da versão atual
+## O que tem
 
-- Visual escuro tema “forja / brasa”
-- Hero, cardápio com badges, pagamento e contato com mapa
-- **Carrinho funcional** (adicionar, quantidade, total, finalizar demo)
-- Menu responsivo (mobile)
-- Página de **Suporte** com formulário demo
-- Dados de contato unificados
+- Site moderno (cardápio, carrinho, toasts)
+- **Login e cadastro** de clientes
+- **API REST** (Express + MySQL + bcrypt + token)
+- Pedidos salvos no banco quando o cliente está logado
 
 ## Estrutura
 
 ```
-├── index.html      # Página principal
-├── Suporte.html    # Suporte / contato
-├── style.css       # Estilos do site
-├── suporte.css     # Estilos extras da página de suporte
-├── script.js       # Carrinho e menu mobile
-└── README.md
+Ferreiro/
+├── index.html, login.html, cadastro.html, Suporte.html
+├── style.css, auth.css, suporte.css
+├── script.js, auth.js
+├── database/
+│   └── schema.sql          # cria banco, tabelas e produtos
+└── backend/
+    ├── server.js           # API + serve o site
+    ├── db.js
+    ├── auth.js             # token HMAC
+    ├── package.json
+    └── .env.example
 ```
 
-## Cardápio
-
-| Item | Preço |
-|------|-------|
-| O Ferreiro Clássico | R$ 34,90 |
-| Elixir do Sabor | R$ 39,90 |
-| O Forjado na Brasa | R$ 37,90 |
-| A Picanha do Mestre (veg) | R$ 32,90 |
-
-## Como visualizar
+## Banco de dados
 
 ```bash
-python3 -m http.server 8000
-# http://localhost:8000
+mysql -u root -p < database/schema.sql
 ```
 
-Ou abra o `index.html` no navegador.
+Tabelas: `CLIENTE`, `PRODUTO`, `PEDIDO`, `PEDIDO_ITEM`.
 
-## Contato
+## API (backend)
 
-- Rua Anita Garibaldi, 150 — Nova Rússia, Ponta Grossa – PR
-- (42) 3224-1679
-- Terça a domingo · 18h – 23h
+```bash
+cd backend
+npm install
+copy .env.example .env     # Windows
+# cp .env.example .env     # Mac/Linux
+# edite DB_PASSWORD e AUTH_SECRET no .env
+npm start
+```
+
+Abra: **http://localhost:3000**
+
+### Rotas
+
+| Método | Rota | Auth | Descrição |
+|--------|------|------|-----------|
+| GET | `/api/saude` | — | Status da API/banco |
+| GET | `/api/produtos` | — | Lista produtos |
+| POST | `/api/cadastro` | — | Criar conta |
+| POST | `/api/login` | — | Entrar |
+| GET | `/api/me` | Bearer | Dados do cliente |
+| POST | `/api/pedidos` | Bearer | Criar pedido |
+| GET | `/api/pedidos` | Bearer | Histórico |
+
+### Exemplo de cadastro
+
+```bash
+curl -X POST http://localhost:3000/api/cadastro \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Matheus","email":"teste@email.com","senha":"1234"}'
+```
+
+## Fluxo no site
+
+1. Cadastre-se em `cadastro.html` ou entre em `login.html`
+2. Adicione itens ao carrinho
+3. **Finalizar pedido** grava no MySQL (precisa estar logado)
+4. Sem login, o site redireciona para a tela de entrar
 
 ## Autor
 

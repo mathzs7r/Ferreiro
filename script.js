@@ -19,13 +19,15 @@
     n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
   function showToast(msg, options = {}) {
+    if (window.Auth && typeof Auth.toast === "function") {
+      Auth.toast(msg, options.type || "");
+      return;
+    }
     const { duration = 2800, type = "" } = options;
     els.toast.textContent = msg;
     els.toast.className = "toast is-visible" + (type ? ` toast--${type}` : "");
     clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => {
-      els.toast.classList.remove("is-visible");
-    }, duration);
+    showToast._t = setTimeout(() => els.toast.classList.remove("is-visible"), duration);
   }
 
   function openCart() {
@@ -120,24 +122,57 @@
   els.btnClose.addEventListener("click", closeCart);
   els.backdrop.addEventListener("click", closeCart);
 
-  els.btnCheckout.addEventListener("click", () => {
+  els.btnCheckout.addEventListener("click", async () => {
     if (cart.size === 0) {
       showToast("Carrinho vazio!", { type: "error" });
       return;
     }
-    let total = 0;
-    let totalQty = 0;
-    for (const item of cart.values()) {
-      total += item.qty * item.price;
-      totalQty += item.qty;
+
+    const user = window.Auth ? Auth.getUser() : null;
+    const token = window.Auth ? Auth.getToken() : "";
+
+    if (!user || !token) {
+      showToast("Faça login para finalizar o pedido", { type: "error" });
+      setTimeout(() => {
+        location.href = "login.html?next=index.html";
+      }, 900);
+      return;
     }
-    showToast(
-      `Pedido registrado! ${totalQty} item(ns) · ${money(total)}`,
-      { type: "success", duration: 3500 }
-    );
-    cart.clear();
-    render();
-    closeCart();
+
+    const itens = [];
+    for (const item of cart.values()) {
+      itens.push({
+        id: item.id,
+        nome: item.name,
+        preco: item.price,
+        quantidade: item.qty,
+      });
+    }
+
+    els.btnCheckout.disabled = true;
+    try {
+      const res = await Auth.api("/api/pedidos", {
+        method: "POST",
+        body: JSON.stringify({ itens }),
+      });
+      showToast(
+        `Pedido #${res.pedidoId} registrado · ${money(res.total)}`,
+        { type: "success" }
+      );
+      cart.clear();
+      render();
+      closeCart();
+    } catch (err) {
+      const msg = err.message || "Erro ao enviar pedido";
+      showToast(msg, { type: "error" });
+      if (/login/i.test(msg)) {
+        setTimeout(() => {
+          location.href = "login.html?next=index.html";
+        }, 1000);
+      }
+    } finally {
+      els.btnCheckout.disabled = false;
+    }
   });
 
   els.menuToggle.addEventListener("click", () => {
