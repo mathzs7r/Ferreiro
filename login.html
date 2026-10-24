@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | O Ferreiro do Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon">⚒</span>
+        <span class="logo__text">O Ferreiro do Sabor</span>
+      </a>
+      <a href="cadastro.html" class="btn btn--small btn--ghost">Criar conta</a>
+    </div>
+  </header>
+
+  <main class="auth">
+    <form class="auth-card" id="login-form">
+      <span class="section__label">Conta</span>
+      <h1 class="auth-card__title">Entrar</h1>
+      <p class="auth-card__desc">Acesse para finalizar pedidos e ver seu histórico.</p>
+
+      <label>
+        E-mail
+        <input type="email" name="email" required placeholder="seu@email.com" autocomplete="email">
+      </label>
+      <label>
+        Senha
+        <input type="password" name="senha" required placeholder="Sua senha" autocomplete="current-password">
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--block">Entrar</button>
+      <p class="auth-card__footer">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </form>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true;
+      try {
+        const res = await Auth.api("/api/login", {
+          method: "POST",
+          body: JSON.stringify({ email: data.email, senha: data.senha }),
+        });
+        Auth.salvarSessao(res.token, res.cliente);
+        Auth.toast("Bem-vindo, " + res.cliente.nome + "!", "success");
+        setTimeout(() => {
+          const dest = new URLSearchParams(location.search).get("next") || "index.html";
+          location.href = dest;
+        }, 700);
+      } catch (err) {
+        Auth.toast(err.message || "Erro ao entrar", "error");
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

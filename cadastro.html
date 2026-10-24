@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | O Ferreiro do Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon">⚒</span>
+        <span class="logo__text">O Ferreiro do Sabor</span>
+      </a>
+      <a href="login.html" class="btn btn--small btn--ghost">Já tenho conta</a>
+    </div>
+  </header>
+
+  <main class="auth">
+    <form class="auth-card" id="cadastro-form">
+      <span class="section__label">Conta</span>
+      <h1 class="auth-card__title">Criar conta</h1>
+      <p class="auth-card__desc">Cadastre-se para pedir pelo site.</p>
+
+      <label>
+        Nome
+        <input type="text" name="nome" required placeholder="Seu nome" autocomplete="name">
+      </label>
+      <label>
+        E-mail
+        <input type="email" name="email" required placeholder="seu@email.com" autocomplete="email">
+      </label>
+      <label>
+        Telefone (opcional)
+        <input type="tel" name="telefone" placeholder="(42) 99999-9999" autocomplete="tel">
+      </label>
+      <label>
+        Senha
+        <input type="password" name="senha" required minlength="4" placeholder="Mínimo 4 caracteres" autocomplete="new-password">
+      </label>
+
+      <button type="submit" class="btn btn--primary btn--block">Cadastrar</button>
+      <p class="auth-card__footer">Já tem conta? <a href="login.html">Entrar</a></p>
+    </form>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="auth.js"></script>
+  <script>
+    document.getElementById("cadastro-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true;
+      try {
+        const res = await Auth.api("/api/cadastro", {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+        Auth.salvarSessao(res.token, res.cliente);
+        Auth.toast("Conta criada! Bem-vindo, " + res.cliente.nome, "success");
+        setTimeout(() => (location.href = "index.html"), 800);
+      } catch (err) {
+        Auth.toast(err.message || "Erro no cadastro", "error");
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
