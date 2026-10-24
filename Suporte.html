@@ -91,11 +91,29 @@
     </div>
   </footer>
 
+  <div class="toast" id="toast" role="status"></div>
+
   <script>
+    const toastEl = document.getElementById("toast");
+
+    function showToast(msg, options = {}) {
+      const { duration = 3000, type = "" } = options;
+      toastEl.textContent = msg;
+      toastEl.className = "toast is-visible" + (type ? ` toast--${type}` : "");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => {
+        toastEl.classList.remove("is-visible");
+      }, duration);
+    }
+
     document.getElementById("support-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const data = new FormData(e.target);
-      alert("Mensagem recebida (demo)!\n\nNome: " + data.get("nome") + "\nContato: " + data.get("contato"));
+      const nome = data.get("nome");
+      showToast(`Obrigado, ${nome}! Mensagem enviada (demo).`, {
+        type: "success",
+        duration: 3500,
+      });
       e.target.reset();
     });
   </script>

@@ -683,18 +683,31 @@ ul {
   transform: translateX(-50%) translateY(120%);
   background: var(--surface);
   color: var(--text);
-  padding: 0.85rem 1.35rem;
+  padding: 0.9rem 1.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(232, 184, 109, 0.3);
+  border: 1px solid rgba(232, 184, 109, 0.35);
   box-shadow: var(--shadow);
   z-index: 300;
   font-weight: 600;
-  transition: transform 0.3s ease;
-  white-space: nowrap;
+  font-size: 0.95rem;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  max-width: min(92vw, 420px);
+  text-align: center;
+  line-height: 1.35;
 }
 
 .toast.is-visible {
   transform: translateX(-50%) translateY(0);
+}
+
+.toast--success {
+  border-color: rgba(45, 106, 79, 0.7);
+  background: #1a2e24;
+}
+
+.toast--error {
+  border-color: rgba(192, 57, 43, 0.7);
+  background: #2e1a18;
 }
 
 /* RESPONSIVE */

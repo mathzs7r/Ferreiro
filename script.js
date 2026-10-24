@@ -18,11 +18,14 @@
   const money = (n) =>
     n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-  function showToast(msg) {
+  function showToast(msg, options = {}) {
+    const { duration = 2800, type = "" } = options;
     els.toast.textContent = msg;
-    els.toast.classList.add("is-visible");
+    els.toast.className = "toast is-visible" + (type ? ` toast--${type}` : "");
     clearTimeout(showToast._t);
-    showToast._t = setTimeout(() => els.toast.classList.remove("is-visible"), 2200);
+    showToast._t = setTimeout(() => {
+      els.toast.classList.remove("is-visible");
+    }, duration);
   }
 
   function openCart() {
@@ -42,7 +45,7 @@
     current.qty += 1;
     cart.set(id, current);
     render();
-    showToast(`${name} adicionado!`);
+    showToast(`${name} adicionado!`, { type: "success" });
   }
 
   function setQty(id, qty) {
@@ -119,18 +122,18 @@
 
   els.btnCheckout.addEventListener("click", () => {
     if (cart.size === 0) {
-      showToast("Carrinho vazio!");
+      showToast("Carrinho vazio!", { type: "error" });
       return;
     }
     let total = 0;
-    const nomes = [];
+    let totalQty = 0;
     for (const item of cart.values()) {
       total += item.qty * item.price;
-      nomes.push(`${item.qty}x ${item.name}`);
+      totalQty += item.qty;
     }
-    showToast("Pedido registrado! (demo)");
-    alert(
-      `Pedido demo\n\n${nomes.join("\n")}\n\nTotal: ${money(total)}\n\nEm um site real, isso iria para WhatsApp ou sistema de pedidos.`
+    showToast(
+      `Pedido registrado! ${totalQty} item(ns) · ${money(total)}`,
+      { type: "success", duration: 3500 }
     );
     cart.clear();
     render();
