@@ -1,23 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="suporte.css">
-    <title>Suporte- [Ferreiro do sabor]</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suporte e contato — O Ferreiro do Sabor">
+  <title>Suporte | O Ferreiro do Sabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="suporte.css">
 </head>
 <body>
-    <h1>Entre em Contato </h1>
-    <p>Estamos prontos para te atender</p>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon">⚒</span>
+        <span class="logo__text">O Ferreiro do Sabor</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Início</a>
+        <a href="index.html#cardapio" class="nav__link">Cardápio</a>
+        <a href="index.html#contato" class="nav__link">Contato</a>
+        <a href="Suporte.html" class="nav__link">Suporte</a>
+      </nav>
+      <a href="index.html#cardapio" class="btn btn--small btn--primary">Cardápio</a>
+    </div>
+  </header>
 
-    <br><br>
+  <main class="support">
+    <div class="container support__inner">
+      <header class="section__header">
+        <span class="section__label">Suporte</span>
+        <h1 class="section__title">Estamos prontos para te atender</h1>
+        <p class="section__desc">Dúvidas sobre pedidos, cardápio ou horários? Fale conosco.</p>
+      </header>
 
-    <h2>Nossas Informações</h2>
-    <p><b>Endereço:</b> Rua Carlinho da silva do capa, 24 </p>
-    <p><b>Telefone:</b> (42) 99999-9999</a></p>
-    <p><b>Horário de Funcionamento:</b>
-    <ul>
-        <li>Todos os dias,das 00:00 até as 24:99 </li>
-    
-    </ul>
+      <div class="support-grid">
+        <section class="support-card">
+          <h2>Informações</h2>
+          <ul class="contact-list">
+            <li>
+              <strong>Endereço</strong>
+              <span>Rua Anita Garibaldi, 150 — Nova Rússia<br>Ponta Grossa – PR, 84015-050</span>
+            </li>
+            <li>
+              <strong>Telefone</strong>
+              <a href="tel:+554232241679">(42) 3224-1679</a>
+            </li>
+            <li>
+              <strong>E-mail</strong>
+              <a href="mailto:almeida.pinto.matheus@escola.pr.gov.br">almeida.pinto.matheus@escola.pr.gov.br</a>
+            </li>
+            <li>
+              <strong>Horário</strong>
+              <span>Terça a domingo · 18h – 23h<br>Fechado às segundas</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="support-card">
+          <h2>Mensagem rápida</h2>
+          <form class="support-form" id="support-form">
+            <label>
+              Nome
+              <input type="text" name="nome" required placeholder="Seu nome">
+            </label>
+            <label>
+              E-mail ou WhatsApp
+              <input type="text" name="contato" required placeholder="contato@email.com ou (42) 9xxxx-xxxx">
+            </label>
+            <label>
+              Mensagem
+              <textarea name="mensagem" rows="4" required placeholder="Como podemos ajudar?"></textarea>
+            </label>
+            <button type="submit" class="btn btn--primary btn--block">Enviar (demo)</button>
+          </form>
+          <p class="support-note">Este formulário é demonstrativo — em produção enviaria e-mail ou WhatsApp.</p>
+        </section>
+      </div>
+
+      <p class="support-back"><a href="index.html">← Voltar ao site</a></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">⚒ O Ferreiro do Sabor</p>
+      <p class="footer__copy">© 2026 O Ferreiro do Sabor · Ponta Grossa – PR</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("support-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      alert("Mensagem recebida (demo)!\n\nNome: " + data.get("nome") + "\nContato: " + data.get("contato"));
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>

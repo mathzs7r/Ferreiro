@@ -1,42 +1,50 @@
 # O Ferreiro do Sabor
 
-Site estático de hamburgueria artesanal — **O Ferreiro do Sabor** (Ponta Grossa - PR).
+Site da hamburgueria artesanal **O Ferreiro do Sabor** (Ponta Grossa – PR).
 
-## Sobre
+## Destaques da versão atual
 
-Landing page com cardápio de hambúrgueres, formas de pagamento e contato. Tema visual de “forja / brasa”.
+- Visual escuro tema “forja / brasa”
+- Hero, cardápio com badges, pagamento e contato com mapa
+- **Carrinho funcional** (adicionar, quantidade, total, finalizar demo)
+- Menu responsivo (mobile)
+- Página de **Suporte** com formulário demo
+- Dados de contato unificados
 
-## Cardápio (exemplos)
+## Estrutura
+
+```
+├── index.html      # Página principal
+├── Suporte.html    # Suporte / contato
+├── style.css       # Estilos do site
+├── suporte.css     # Estilos extras da página de suporte
+├── script.js       # Carrinho e menu mobile
+└── README.md
+```
+
+## Cardápio
 
 | Item | Preço |
 |------|-------|
 | O Ferreiro Clássico | R$ 34,90 |
 | Elixir do Sabor | R$ 39,90 |
 | O Forjado na Brasa | R$ 37,90 |
-| A Picanha do Mestre (vegetariano) | R$ 32,90 |
-
-## Estrutura
-
-```
-├── index.html      # Página principal (menu + pagamento + contato)
-├── Suporte.html    # Página de suporte
-├── style.css       # Estilos principais
-└── suporte.css     # Estilos da página de suporte
-```
+| A Picanha do Mestre (veg) | R$ 32,90 |
 
 ## Como visualizar
-
-Abra o `index.html` no navegador ou:
 
 ```bash
 python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-## Contato (no site)
+Ou abra o `index.html` no navegador.
 
-- Endereço: Rua Anita Garibaldi, 150, Nova Rússia, Ponta Grossa - PR
-- Telefone: (42) 3224-1679
+## Contato
+
+- Rua Anita Garibaldi, 150 — Nova Rússia, Ponta Grossa – PR
+- (42) 3224-1679
+- Terça a domingo · 18h – 23h
 
 ## Autor
 

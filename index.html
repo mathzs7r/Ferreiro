@@ -1,100 +1,212 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Hambúrgueres artesanais forjados na brasa com paixão e precisão.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-      Ferreiro do Sabor
-    </title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header>
-        <h1> <b> O Ferreiro do Sabor </b></h1>
-        <p>O Ferreiro do Sabor: Onde o Fogo Encontra a Perfeição.
-          Cansado do comum? No O Ferreiro do Sabor, transformamos a arte de grelhar em uma experiência inesquecível. Cada hambúrguer é uma obra-prima, meticulosamente forjada na brasa, com carnes suculentas que explodem em sabor e ingredientes frescos que elevam cada mordida. Sinta a diferença de um sanduíche criado com paixão e precisão, onde cada detalhe é pensado para despertar seus sentidos. Não é só um hambúrguer, é um legado. Venha descobrir a alquimia do sabor e o verdadeiro poder da brasa. Seu paladar nunca mais será o mesmo.</p>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="O Ferreiro do Sabor — hambúrgueres artesanais forjados na brasa em Ponta Grossa, PR.">
+  <title>O Ferreiro do Sabor | Hambúrgueres Artesanais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <nav>
-            <a href="Suporte.html">Suporte</a><br>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#menu-hamburgueres">Menu</a></li>
-                <li><a href="#forma-de-pagamento">Formas de Pagamento</a></li>
-            </ul>
-        </nav>
-        </header>
+  <!-- NAV -->
+  <header class="topbar" id="inicio">
+    <div class="container topbar__inner">
+      <a href="#inicio" class="logo">
+        <span class="logo__icon">⚒</span>
+        <span class="logo__text">O Ferreiro do Sabor</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#inicio" class="nav__link">Início</a>
+        <a href="#cardapio" class="nav__link">Cardápio</a>
+        <a href="#pagamento" class="nav__link">Pagamento</a>
+        <a href="#contato" class="nav__link">Contato</a>
+        <a href="Suporte.html" class="nav__link">Suporte</a>
+      </nav>
+      <button class="cart-btn" id="cart-btn" aria-label="Abrir carrinho">
+        🛒 <span class="cart-btn__count" id="cart-count">0</span>
+      </button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <main class="menu-container" id="menu-hamburgueres">
-      <div class="menu-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcVt8-SCga7iyv2Id-crNIC3_xjXwO5lRxTQ&s" alt="Hambúrguer O Ferreiro Clássico">
-        <div class="menu-card-content">
-          <h3 class="item-name">O Ferreiro Clássico</h3>
-          <p class="item-description">Blend de carnes selecionadas<br>Queijo derretido<br>Tomate fresco<br>Alface crocante<br>Molho secreto<br>Pão brioche macio</p>
-          <p class="price">Preço: R$ 34,90</p>
-          <button class="add-to-cart-btn" data-price="34.90">Adicionar ao Carrinho</button>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Ponta Grossa · PR</p>
+      <h1 class="hero__title">Onde o fogo encontra<br><em>a perfeição</em></h1>
+      <p class="hero__subtitle">Hambúrgueres artesanais forjados na brasa, com carne suculenta e ingredientes frescos. Não é só um sanduíche — é um legado.</p>
+      <div class="hero__actions">
+        <a href="#cardapio" class="btn btn--primary">Ver cardápio</a>
+        <a href="#contato" class="btn btn--ghost">Como chegar</a>
       </div>
+    </div>
+  </section>
 
-      <div class="menu-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwxK9x8nnLyOGmMFQyjLTXJC3CFBoRnKb3m66TZVsZDFD0rMMq5iy4xrDw&s" alt="Hambúrguer O Defumado do Mestre">
-        <div class="menu-card-content">
-          <h3 class="item-name">Elixir do Sabor</h3>
-          <p class="item-description">Blend de costela defumada<br>Queijo provolone<br>Cebola caramelizada<br>Bacon crocante<br>Maionese de alho defumado<br>Pão australiano</p>
-          <p class="price">Preço: R$ 39,90</p>
-          <button class="add-to-cart-btn" data-price="39.90">Adicionar ao Carrinho</button>
-        </div>
+  <!-- CARDÁPIO -->
+  <section class="section" id="cardapio">
+    <div class="container">
+      <header class="section__header">
+        <span class="section__label">Cardápio</span>
+        <h2 class="section__title">Forjados na brasa</h2>
+        <p class="section__desc">Cada hambúrguer é uma obra-prima. Escolha o seu e adicione ao carrinho.</p>
+      </header>
+
+      <div class="menu-grid">
+        <article class="card" data-id="classico" data-name="O Ferreiro Clássico" data-price="34.90">
+          <div class="card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop" alt="O Ferreiro Clássico" loading="lazy">
+            <span class="card__badge">Clássico</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">O Ferreiro Clássico</h3>
+            <p class="card__desc">Blend de carnes · queijo derretido · tomate · alface · molho secreto · pão brioche</p>
+            <div class="card__footer">
+              <span class="card__price">R$ 34,90</span>
+              <button type="button" class="btn btn--small add-to-cart">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="elixir" data-name="Elixir do Sabor" data-price="39.90">
+          <div class="card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&h=400&fit=crop" alt="Elixir do Sabor" loading="lazy">
+            <span class="card__badge card__badge--hot">Mais pedido</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Elixir do Sabor</h3>
+            <p class="card__desc">Costela defumada · provolone · cebola caramelizada · bacon · maionese de alho · pão australiano</p>
+            <div class="card__footer">
+              <span class="card__price">R$ 39,90</span>
+              <button type="button" class="btn btn--small add-to-cart">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="forjado" data-name="O Forjado na Brasa" data-price="37.90">
+          <div class="card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=600&h=400&fit=crop" alt="O Forjado na Brasa" loading="lazy">
+            <span class="card__badge card__badge--spicy">Picante</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">O Forjado na Brasa</h3>
+            <p class="card__desc">Picanha · pepper jack · jalapeños · sour cream · molho agridoce · pão de cerveja</p>
+            <div class="card__footer">
+              <span class="card__price">R$ 37,90</span>
+              <button type="button" class="btn btn--small add-to-cart">Adicionar</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="vegetariano" data-name="A Picanha do Mestre" data-price="32.90">
+          <div class="card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=600&h=400&fit=crop" alt="A Picanha do Mestre (vegetariano)" loading="lazy">
+            <span class="card__badge card__badge--veg">Veg</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">A Picanha do Mestre</h3>
+            <p class="card__desc">Grão de bico e quinoa · coalho grelhado · rúcula · tomate seco · pesto · pão integral</p>
+            <div class="card__footer">
+              <span class="card__price">R$ 32,90</span>
+              <button type="button" class="btn btn--small add-to-cart">Adicionar</button>
+            </div>
+          </div>
+        </article>
       </div>
+    </div>
+  </section>
 
-      <div class="menu-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi6TT5o4_mXElnsgwfjLLRNd_eeh61U89xqA&s" alt="Hambúrguer O Forjado Apimentado">
-        <div class="menu-card-content">
-          <h3 class="item-name">O Forjado na Brasa</h3>
-          <p class="item-description">Blend de picanha<br>Queijo pepper jack<br>Jalapeños empanados<br>Sour cream<br>Molho agridoce de pimenta<br>Pão de cerveja</p>
-          <p class="price">Preço: R$ 37,90</p>
-          <button class="add-to-cart-btn" data-price="37.90">Adicionar ao Carrinho</button>
-        </div>
+  <!-- PAGAMENTO -->
+  <section class="section section--alt" id="pagamento">
+    <div class="container">
+      <header class="section__header">
+        <span class="section__label">Pagamento</span>
+        <h2 class="section__title">Formas de pagamento</h2>
+        <p class="section__desc">Aceitamos cartão, PIX e dinheiro. Rápido e sem complicação.</p>
+      </header>
+      <div class="pay-grid">
+        <div class="pay-item"><span class="pay-item__icon">💳</span><span>Visa / Mastercard / Elo</span></div>
+        <div class="pay-item"><span class="pay-item__icon">⚡</span><span>PIX</span></div>
+        <div class="pay-item"><span class="pay-item__icon">💵</span><span>Dinheiro</span></div>
+        <div class="pay-item"><span class="pay-item__icon">📱</span><span>Débito e crédito</span></div>
       </div>
+    </div>
+  </section>
 
-      <div class="menu-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8GrZBei61lhdC6P3un7OfYLvur3TbylxfyQ&s" alt="Hambúrguer O Vegetariano Artesanal">
-        <div class="menu-card-content">
-          <h3 class="item-name">A Picanha do Mestre</h3>
-          <p class="item-description">Hambúrguer de grão de bico e quinoa<br>Queijo coalho grelhado<br>Rúcula fresca<br>Tomate seco<br>Pesto de manjericão<br>Pão integral</p>
-          <p class="price">Preço: R$ 32,90</p>
-          <button class="add-to-cart-btn" data-price="32.90">Adicionar ao Carrinho</button>
-        </div>
+  <!-- CONTATO -->
+  <section class="section" id="contato">
+    <div class="container contact-grid">
+      <div>
+        <span class="section__label">Contato</span>
+        <h2 class="section__title">Fale com o Ferreiro</h2>
+        <ul class="contact-list">
+          <li>
+            <strong>Endereço</strong>
+            <span>Rua Anita Garibaldi, 150 — Nova Rússia<br>Ponta Grossa – PR, 84015-050</span>
+          </li>
+          <li>
+            <strong>Telefone</strong>
+            <a href="tel:+554232241679">(42) 3224-1679</a>
+          </li>
+          <li>
+            <strong>E-mail</strong>
+            <a href="mailto:almeida.pinto.matheus@escola.pr.gov.br">almeida.pinto.matheus@escola.pr.gov.br</a>
+          </li>
+          <li>
+            <strong>Horário</strong>
+            <span>Terça a domingo · 18h – 23h</span>
+          </li>
+        </ul>
+        <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&query=Rua+Anita+Garibaldi+150+Nova+R%C3%BAssia+Ponta+Grossa+PR" target="_blank" rel="noopener">Abrir no Maps</a>
       </div>
-    </main>
+      <div class="contact-map">
+        <iframe
+          title="Mapa O Ferreiro do Sabor"
+          src="https://www.google.com/maps?q=Rua+Anita+Garibaldi,+150,+Nova+R%C3%BAssia,+Ponta+Grossa+-+PR&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
 
-    ---
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__brand">⚒ O Ferreiro do Sabor</p>
+      <p class="footer__copy">© 2026 O Ferreiro do Sabor · Ponta Grossa – PR</p>
+    </div>
+  </footer>
 
-    <section class="payment-methods-section" id="forma-de-pagamento">
-        <h2>Formas de Pagamento</h2>
-        <div class="payment-icons">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsOhyP14WDo8ezDckSTrgYWpKUQPn-XBn07g&s" alt="Aceitamos Visa">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlItalAEXvh_xwETvgGZCdRVJ92CLUK8k2EA&s" alt="Aceitamos Mastercard">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTtkdgEZq5ZhGFMzi1FdVZgrDY6QtmHUSr4g&s" alt="Aceitamos Elo">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM1T4q1y20Z4Pn45OdtzMjr38hdzZUtLvcow&s" alt="Aceitamos PIX">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4_7lBperRwfuZUdZsp7DIgihqeCI0pC-fjA&s" alt="Aceitamos Dinheiro">
-        </div>
-        <p>Aceitamos as principais bandeiras de cartão de crédito e débito, PIX e dinheiro.</p>
-    </section>
+  <!-- CARRINHO (drawer) -->
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer__header">
+      <h2>Seu pedido</h2>
+      <button type="button" class="cart-drawer__close" id="cart-close" aria-label="Fechar">×</button>
+    </div>
+    <div class="cart-drawer__body" id="cart-items">
+      <p class="cart-empty">Carrinho vazio. Adicione um hambúrguer!</p>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">R$ 0,00</strong>
+      </div>
+      <button type="button" class="btn btn--primary btn--block" id="cart-checkout">Finalizar pedido</button>
+    </div>
+  </aside>
+  <div class="cart-backdrop" id="cart-backdrop"></div>
 
-    ---
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status"></div>
 
-    <section class="contact-section" id="contato">
-        <h2>Fale com o Ferreiro!</h2>
-        <div class="contact-info">
-            <p><strong>Endereço:</strong>  Rua Anita Garibaldi, 150, Nova Rússia, Ponta Grossa - PR, 84015-050</p>
-            <p><strong>Telefone:</strong> <a href="tel:+5542999999999">(42) 3224-1679
-            </a></p>
-            <p><strong>Email:</strong> <a href="mailto:contato@oferreirodosabor.com.br">almeida.pinto.matheus@escola.pr.gov.br</a></p>
-            <p><strong>Horário de Funcionamento:</strong><br>Terça a Domingo: 18h00 - 23h00</p>
-        </div>
-    </section>
-    <footer>
-      <p>© 2025 O Ferreiro do Sabor. Todos os direitos reservados.</p>
-    </footer>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
