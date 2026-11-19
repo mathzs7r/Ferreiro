@@ -8,6 +8,8 @@ Site + **API** + **MySQL** da hamburgueria artesanal **O Ferreiro do Sabor** (Po
 - **Login e cadastro** de clientes
 - **API REST** (Express + MySQL + bcrypt + token)
 - Pedidos salvos no banco quando o cliente está logado
+- **Carrinho persistente** (localStorage)
+- **Histórico de pedidos** no site (seção “Meus pedidos”) com itens do pedido
 
 ## Estrutura
 
