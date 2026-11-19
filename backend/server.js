@@ -171,7 +171,28 @@ app.get("/api/pedidos", exigirLogin, async (req, res) => {
        FROM PEDIDO WHERE CLIENTE_ID = ? ORDER BY ID DESC LIMIT 20`,
       [req.cliente.id]
     );
-    res.json(pedidos);
+
+    const resultado = [];
+    for (const p of pedidos) {
+      const [itens] = await pool.query(
+        `SELECT CODIGO AS codigo, NOME AS nome, PRECO_UNITARIO AS preco, QUANTIDADE AS quantidade
+         FROM PEDIDO_ITEM WHERE PEDIDO_ID = ?`,
+        [p.id]
+      );
+      resultado.push({
+        id: p.id,
+        total: p.total,
+        status: p.status,
+        criadoEm: p.criadoEm,
+        itens: (itens || []).map((i) => ({
+          codigo: i.codigo,
+          nome: i.nome,
+          preco: Number(i.preco),
+          quantidade: Number(i.quantidade),
+        })),
+      });
+    }
+    res.json(resultado);
   } catch (err) {
     res.status(500).json({ erro: err.message });
   }

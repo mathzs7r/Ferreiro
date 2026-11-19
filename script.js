@@ -1,5 +1,29 @@
 (() => {
-  const cart = new Map();
+  const CARRITO_KEY = "ferreiro_carrinho";
+
+  function carregarCarrinho() {
+    const map = new Map();
+    try {
+      const raw = localStorage.getItem(CARRITO_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(arr)) return map;
+      for (const i of arr) {
+        const id = String(i.id);
+        if (!map.has(id)) map.set(id, { id, name: i.name, price: Number(i.price), qty: Number(i.qty) || 1 });
+      }
+    } catch {
+      /* carrinho vazio */
+    }
+    return map;
+  }
+
+  function salvarCarrinho() {
+    const arr = [];
+    for (const item of cart.values()) arr.push({ id: item.id, name: item.name, price: item.price, qty: item.qty });
+    try { localStorage.setItem(CARRITO_KEY, JSON.stringify(arr)); } catch (e) { /* sem localStorage */ }
+  }
+
+  let cart = carregarCarrinho();
 
   const els = {
     count: document.getElementById("cart-count"),
@@ -62,6 +86,7 @@
   }
 
   function render() {
+    salvarCarrinho();
     let totalQty = 0;
     let totalPrice = 0;
     const lines = [];
@@ -188,4 +213,45 @@
   });
 
   render();
+
+  async function carregarPedidos() {
+    const section = document.getElementById("pedidos");
+    const list = document.getElementById("pedidos-list");
+    if (!section || !list) return;
+
+    const user = Auth ? Auth.getUser() : null;
+    if (!user) {
+      section.style.display = "none";
+      return;
+    }
+
+    section.style.display = "block";
+
+    try {
+      const pedidos = await Auth.api("/api/pedidos");
+      const bloco = document.getElementById("pedidos-list");
+      bloco.innerHTML = "";
+      if (!pedidos || !pedidos.length) {
+        bloco.innerHTML = '<p class="cart-empty">Nenhum pedido ainda. Vá ao cardápio e faça seu primeiro pedido!</p>';
+        return;
+      }
+      for (const p of pedidos) {
+        const div = document.createElement("div");
+        div.className = "pedido-card";
+        div.innerHTML = `
+          <div class="pedido-card__head"><strong>Pedido #${p.id}</strong> · ${money(p.total)} · <span>${p.status}</span></div>
+          <ul class="pedido-card__list">
+            ${p.itens ? p.itens.map((i) => `<li>${i.nome} — ${i.quantidade}× ${money(i.preco)} = ${money(i.quantidade * i.preco)}</li>`).join("") : ""}
+          </ul>
+        `;
+        bloco.appendChild(div);
+      }
+    } catch (err) {
+      // falha silenciosa: o histórico não deve quebrar a experiência do site
+    }
+  }
+
+  if (Auth && typeof Auth.getUser === "function") {
+    carregarPedidos();
+  }
 })();
